@@ -61,6 +61,41 @@ vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", {
   desc = "Toggle project file tree",
 })
 
+local file_runners = {
+  python = { "python3" },
+  go = { "go", "run" },
+}
+
+local function run_current_file()
+  local file = vim.api.nvim_buf_get_name(0)
+  local command = file_runners[vim.bo.filetype]
+
+  if file == "" then
+    vim.notify("Save the file before running it", vim.log.levels.WARN)
+    return
+  end
+
+  if command == nil then
+    vim.notify("No runner configured for filetype: " .. vim.bo.filetype, vim.log.levels.ERROR)
+    return
+  end
+
+  vim.cmd.update()
+
+  local args = vim.list_extend(vim.deepcopy(command), { file })
+  vim.cmd("botright 12new")
+  vim.fn.jobstart(args, { term = true })
+  vim.cmd.startinsert()
+end
+
+vim.api.nvim_create_user_command("RunFile", run_current_file, {
+  desc = "Save and run the current file",
+})
+
+vim.keymap.set("n", "<F5>", run_current_file, {
+  desc = "Save and run the current file",
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local opts = { buffer = args.buf }
