@@ -20,6 +20,7 @@ local cmp = require("cmp")
 local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 cmp.setup({
+  preselect = cmp.PreselectMode.None,
   mapping = cmp.mapping.preset.insert({
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
@@ -29,6 +30,18 @@ cmp.setup({
   }),
   sources = {
     { name = "nvim_lsp" },
+  },
+  sorting = {
+    comparators = {
+      cmp.config.compare.exact,
+      cmp.config.compare.locality,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.score,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.kind,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
   },
 })
 
