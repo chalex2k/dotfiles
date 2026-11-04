@@ -92,7 +92,7 @@ vim.api.nvim_create_user_command("RunFile", run_current_file, {
   desc = "Save and run the current file",
 })
 
-vim.keymap.set("n", "<F5>", run_current_file, {
+vim.keymap.set("n", "<F10>", run_current_file, {
   desc = "Save and run the current file",
 })
 
