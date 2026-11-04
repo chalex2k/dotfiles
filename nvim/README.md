@@ -2,9 +2,27 @@
 
 Конфигурация использует
 [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua) для отображения дерева
-файлов проекта и
+файлов проекта,
 [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) вместе с `gopls` для
-навигации по Go-коду.
+навигации по Go-коду, [basedpyright](https://docs.basedpyright.com/) для анализа Python
+и [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) для автодополнения.
+
+## Автодополнение Python
+
+При первом запуске Neovim скачает плагины и автоматически установит
+`basedpyright`. После завершения установки заново откройте Python-файл.
+
+Подсказки появляются автоматически во время набора. Доступные клавиши:
+
+| Клавиша | Действие |
+| --- | --- |
+| `Ctrl-Space` | Показать подсказки вручную |
+| `Tab` / `Shift-Tab` | Выбрать следующую / предыдущую подсказку |
+| `Enter` | Применить выбранную подсказку |
+| `Ctrl-e` | Закрыть список подсказок |
+
+Проверить состояние language server можно командой `:checkhealth vim.lsp`, а
+установку `basedpyright` — командой `:Mason`.
 
 ## Открытие дерева
 
