@@ -31,6 +31,13 @@ cmp.setup({
   sources = {
     { name = "nvim_lsp" },
   },
+  matching = {
+    disallow_fuzzy_matching = false,
+    disallow_fullfuzzy_matching = false,
+    disallow_partial_fuzzy_matching = false,
+    disallow_partial_matching = false,
+    disallow_prefix_unmatching = false,
+  },
   sorting = {
     comparators = {
       cmp.config.compare.exact,
